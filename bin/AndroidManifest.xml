@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="album.entry"
+    package="com.uit.snsalbum.entry"
     android:versionCode="1"
     android:versionName="2.0" >
 
@@ -44,7 +44,7 @@
         android:label="@string/app_name" >
         
         <activity
-            android:name=".SplashScreen"
+            android:name="com.uit.snsalbum.entry.SplashScreen"
             android:label="@string/app_name" >           
             <intent-filter >
                 <action android:name="android.intent.action.MAIN"/>
@@ -53,52 +53,52 @@
         </activity>
         
         <!-- 注册模块 -->
-	    <activity android:name=".RegisterActivity"></activity>
+	    <activity android:name="com.uit.snsalbum.entry.RegisterActivity"></activity>
 	    <!-- 登录模块 -->
-	    <activity android:name=".LoginActivity"></activity>
+	    <activity android:name="com.uit.snsalbum.entry.LoginActivity"></activity>
 	       
         <!-- 应用程序主界面 -->
-        <activity android:name=".MainViewActivity"/>
-        <activity android:name=".SettingActivity"></activity>
+        <activity android:name="com.uit.snsalbum.entry.MainViewActivity"/>
+        <activity android:name="com.uit.snsalbum.entry.SettingActivity"></activity>
 	    <!-- 图像编辑模块 -->
-	    <activity android:name="imageEdit.PictureEditActivity"></activity>
+	    <activity android:name="com.uit.snsalbum.imageedit.PictureEditActivity"></activity>
 	    <!-- 照相机模块 -->
-	    <activity android:name="camera.CameraActivity"></activity>	       
+	    <activity android:name="com.uit.snsalbum.camera.CameraActivity"></activity>	       
 	    <!-- 蓝牙模块 -->
-	    <activity android:name="bluetooth.BluetoothChat"/>
-	    <activity android:name="bluetooth.DeviceListActivity"
+	    <activity android:name="com.uit.snsalbum.bluetooth.BluetoothChat"/>
+	    <activity android:name="com.uit.snsalbum.bluetooth.DeviceListActivity"
 	                  android:label="@string/select_device"
 	                  android:theme="@android:style/Theme.Dialog"
 	                  android:configChanges="orientation|keyboardHidden" 
 	        />
 
 	       <!-- 聊天模块 -->
-	       <activity android:name="chat.ChatActivity"/>
-	       <activity android:name="chat.FriendsListActivity"></activity>
+	       <activity android:name="com.uit.snsalbum.chat.ChatActivity"/>
+	       <activity android:name="com.uit.snsalbum.chat.FriendsListActivity"></activity>
 	           
 	       <!-- 人人网模块 -->
 	       <activity android:name="renren.RenRenActivity"></activity>
 	       <activity android:name="renren.WebViewActivity"></activity>
 	       
 	       <!-- 地图模块 -->
-	       <activity android:name="map.BaiduMapActivity"></activity>
+	       <activity android:name="com.uit.snsalbum.map.BaiduMapActivity"></activity>
 	       
 	       <!-- 相册模块 -->
-	       <activity android:name="albums.PhotoAlbumActivity"></activity>
-	       <activity android:name="albums.InPhotoAlbumActivity"
+	       <activity android:name="com.uit.snsalbum.albums.PhotoAlbumActivity"></activity>
+	       <activity android:name="com.uit.snsalbum.albums.InPhotoAlbumActivity"
         		  android:label="网格相册"></activity>
-           <activity android:name="albums.InLocalSmallPhotoActivity" android:label="相册"/>
-           <activity android:name="albums.BigImageView"
+           <activity android:name="com.uit.snsalbum.albums.InLocalSmallPhotoActivity" android:label="相册"/>
+           <activity android:name="com.uit.snsalbum.albums.BigImageView"
         		  android:label="图片"></activity>
-       		<activity android:name="albums.FriendAlbumListActivity" android:label="albums"/>
+       		<activity android:name="com.uit.snsalbum.albums.FriendAlbumListActivity" android:label="albums"/>
         	<!-- 图像载入 -->
-			<activity android:name="albums.LocalImageView"
+			<activity android:name="com.uit.snsalbum.albums.LocalImageView"
         		  android:label="图片"></activity> 
         		  
 			<!-- 后台网络服务,监听socket消息,并且广播 -->
-			<service android:enabled="true" android:name="chat.SocketService"></service>
+			<service android:enabled="true" android:name="com.uit.snsalbum.chat.SocketService"></service>
 			<!-- 电话监听器 -->
-			<receiver android:name="chat.PhoneReceiver" android:priority="2147483643">
+			<receiver android:name="com.uit.snsalbum.chat.PhoneReceiver" android:priority="2147483643">
 			    <intent-filter>
                     <action android:name="android.intent.action.PHONE_STATE"/>
                 	<action android:name="android.intent.action.NEW_OUTGOING_CALL" />
