@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/bg_black"
+    android:id="@+id/edit_layout"
+    >
+    
+    <!-- 图像控件 -->
+       <ImageView 
+            android:id="@+id/imgSelected"
+            android:layout_width="fill_parent"
+       		android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_centerVertical="true" 
+            android:contentDescription="@string/desc"  
+     	/> 
+     	
+       <!-- 载入图像按钮 -->
+         <ImageButton 
+             android:id="@+id/loadBtn"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:background="@drawable/load"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="60dp"
+              android:contentDescription="@string/desc"
+             />
+         <LinearLayout 
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical"
+             >
+	      <LinearLayout
+	        android:id="@+id/layout01"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" 
+	        
+	    	>
+	         <TextView 
+	             android:id="@+id/sTextView"
+	              android:layout_width="wrap_content"
+	              android:layout_height="wrap_content"
+	              android:text="@string/situation"
+	              android:visibility="gone"
+	              />
+	
+	        <SeekBar
+	            android:id="@+id/SaturationBar"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:max="255"
+	            android:progress="127" 
+	            android:visibility="gone"
+	           />
+	
+	    </LinearLayout>
+	
+	
+	    <LinearLayout
+	        android:id="@+id/layout02"
+	        android:paddingTop="2dp"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" 
+	      
+	      >
+	
+	        <TextView
+	            android:id="@+id/hTextView"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="@string/hue" 
+	            android:visibility="gone"
+	            />
+	
+	        <SeekBar
+	            android:id="@+id/hueBar"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:max="255"
+	            android:progress="127"
+	            android:visibility="gone"
+	            />
+	    </LinearLayout>
+	    
+	      <LinearLayout 
+	          android:id="@+id/layout03"
+	        android:orientation="horizontal"
+	         android:layout_width="fill_parent"
+	   		 android:layout_height="wrap_content"
+	   		 android:paddingTop="2dp"
+	        >
+	         <TextView 
+	             android:id="@+id/bTextView"
+	              android:layout_width="wrap_content"
+	              android:layout_height="wrap_content"
+	              android:text="@string/lightness"
+	              android:visibility="gone"
+	         />
+	        <SeekBar 
+	        android:id="@+id/brightBar"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:progress="127"
+	        android:max="255"
+	        android:visibility="gone"
+	   
+	        />
+	    </LinearLayout>
+   </LinearLayout>
+      
+      <!--  按钮区域  -->
+    <LinearLayout 
+        android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:orientation="horizontal"
+    	android:gravity="bottom"
+        >
+	      
+        <!-- 旋转按钮 -->
+	    <LinearLayout 
+	          android:orientation="vertical"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          android:layout_marginLeft="10dp"
+	          >
+	    	<!-- 旋转按钮 -->
+	        <ImageButton
+	            android:id="@+id/btnRotate"
+	            android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_marginLeft="12dp"
+	            android:background="@drawable/rotate" 
+	            android:layout_gravity="bottom"
+	            android:contentDescription="@string/desc"
+	           />
+	  		<TextView 
+	  		    android:layout_width="wrap_content"
+	  		    android:layout_height="wrap_content"
+	  		    android:layout_gravity="left"
+	  		    android:layout_marginLeft="5dp"
+	  		    android:text="@string/rotate"
+	  		    android:textColor="@android:color/background_light"
+	  		    android:textSize="10sp"/>
+    	</LinearLayout>
+    	
+	      
+	    <!-- 图片效果 -->
+	    <LinearLayout 
+	          android:orientation="vertical"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	    >
+	    	  <!-- 图片效果 -->
+	        <ImageButton
+		        android:id="@+id/btnEffect"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_marginLeft="11dp"
+		        android:background="@drawable/color_line"
+		        android:layout_gravity="bottom"
+		         android:contentDescription="@string/desc"
+	        />
+	  		<TextView 
+	  		    android:layout_width="wrap_content"
+	  		    android:layout_height="wrap_content"
+	  		    android:layout_gravity="left"
+	  		    android:layout_marginLeft="5dp"
+	  		    android:text="@string/effect"
+	  		    android:textColor="@android:color/background_light"
+	  		    android:textSize="10sp"/>
+    	</LinearLayout>
+       
+ 
+	   <!-- 滤镜按钮-->
+	    <LinearLayout 
+	          android:orientation="vertical"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          >
+	    	<!-- 滤镜按钮-->
+	        <ImageButton
+	            android:id="@+id/btnFilter"
+	            android:layout_width="40dp"
+	            android:layout_height="40dp"
+	            android:layout_marginLeft="11dp"
+	            android:background="@drawable/adobe_photoshop" 
+	            android:layout_gravity="bottom"
+	             android:contentDescription="@string/desc"
+	           />
+	  		<TextView 
+	  		    android:layout_width="wrap_content"
+	  		    android:layout_height="wrap_content"
+	  		    android:layout_gravity="left"
+	  		    android:layout_marginLeft="8dp"
+	  		    android:text="@string/filter"
+	  		    android:textColor="@android:color/background_light"
+	  		    android:textSize="10sp"/>
+    	</LinearLayout>
+    	
+	     <!-- 边框 -->
+	    <LinearLayout 
+	          android:orientation="vertical"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          >
+	    	 <!-- 边框 -->
+		    <ImageButton
+		        android:id="@+id/btnAddFrame"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_marginLeft="12dp"
+		        android:layout_gravity="bottom"
+		        android:background="@drawable/pal" 
+		         android:contentDescription="@string/desc"/>
+		        
+	  		<TextView 
+	  		    android:layout_width="wrap_content"
+	  		    android:layout_height="wrap_content"
+	  		    android:layout_gravity="left"
+	  		    android:layout_marginLeft="6dp"
+	  		    android:text="@string/frame"
+	  		    android:textColor="@android:color/background_light"
+	  		    android:textSize="10sp"/>
+    	</LinearLayout>
+ 
+    
+	    <!-- 色相饱和度 -->
+	    <LinearLayout 
+	          android:orientation="vertical"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          >
+	    	 <!-- 色相饱和度 -->
+		    <ImageButton
+		        android:id="@+id/btnColor"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_marginLeft="15dp"
+		        android:layout_gravity="bottom"
+		        android:background="@drawable/color_meter"
+		         android:contentDescription="@string/desc"
+		         />
+	  		<TextView 
+	  		    android:id="@+id/palTextView"
+	  		    android:layout_width="wrap_content"
+	  		    android:layout_height="wrap_content"
+	  		    android:layout_gravity="left"
+	  		    android:layout_marginLeft="5dp"
+	  		    android:text="@string/palette"
+	  		    android:textColor="@android:color/background_light"
+	  		    android:textSize="10sp"/>
+    	</LinearLayout>
+
+	    
+	    <!-- 删除 -->
+   		<LinearLayout 
+	          android:orientation="vertical"
+	          android:layout_width="wrap_content"
+	          android:layout_height="wrap_content"
+	          >
+	    	 <!-- 删除 -->
+		     <ImageButton
+		        android:id="@+id/btnCrop"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_marginLeft="12dp"
+		        android:background="@drawable/deletered"
+		        android:layout_gravity="bottom"
+		         android:contentDescription="@string/desc"
+		        />
+	  		<TextView 
+	  		    android:layout_width="wrap_content"
+	  		    android:layout_height="wrap_content"
+	  		    android:layout_gravity="left"
+	  		    android:layout_marginLeft="6dp"
+	  		    android:text="@string/delete"
+	  		    android:textColor="@android:color/background_light"
+	  		    android:textSize="10sp"/>
+    	</LinearLayout>
+     
+    </LinearLayout>			<!-- 水平的按钮线性布局 -->
+    
+</RelativeLayout>

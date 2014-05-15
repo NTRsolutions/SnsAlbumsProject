@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="album.entry"
+    android:versionCode="1"
+    android:versionName="2.0" >
+
+    <uses-sdk android:minSdkVersion="8" 
+        android:targetSdkVersion="8"
+        android:maxSdkVersion="16"/>
+    
+    <!-- use the camera -->
+    <uses-feature android:name="android.hardware.camera" />
+ 	<uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+	<uses-permission android:name="android.permission.SET_WALLPAPER"/>
+	<uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+	<uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-library android:name="com.google.android.maps"/>
+    <uses-permission android:name="android.permission.VIBRATE" /> 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"></uses-permission>
+    <!-- 关闭应用程序的权限 -->
+	<uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <!-- use the sdcard -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>	
+    <uses-permission android:name="android.permission.CALL_PHONE"/>	
+        
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/app_name" >
+        
+        <activity
+            android:name=".SplashScreen"
+            android:label="@string/app_name" >           
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>	
+            </intent-filter>         
+        </activity>
+        
+        <!-- 注册模块 -->
+	    <activity android:name=".RegisterActivity"></activity>
+	    <!-- 登录模块 -->
+	    <activity android:name=".LoginActivity"></activity>
+	       
+        <!-- 应用程序主界面 -->
+        <activity android:name=".MainViewActivity"/>
+        <activity android:name=".SettingActivity"></activity>
+	    <!-- 图像编辑模块 -->
+	    <activity android:name="imageEdit.PictureEditActivity"></activity>
+	    <!-- 照相机模块 -->
+	    <activity android:name="camera.CameraActivity"></activity>	       
+	    <!-- 蓝牙模块 -->
+	    <activity android:name="bluetooth.BluetoothChat"/>
+	    <activity android:name="bluetooth.DeviceListActivity"
+	                  android:label="@string/select_device"
+	                  android:theme="@android:style/Theme.Dialog"
+	                  android:configChanges="orientation|keyboardHidden" 
+	        />
+
+	       <!-- 聊天模块 -->
+	       <activity android:name="chat.ChatActivity"/>
+	       <activity android:name="chat.FriendsListActivity"></activity>
+	           
+	       <!-- 人人网模块 -->
+	       <activity android:name="renren.RenRenActivity"></activity>
+	       <activity android:name="renren.WebViewActivity"></activity>
+	       
+	       <!-- 地图模块 -->
+	       <activity android:name="map.BaiduMapActivity"></activity>
+	       
+	       <!-- 相册模块 -->
+	       <activity android:name="albums.PhotoAlbumActivity"></activity>
+	       <activity android:name="albums.InPhotoAlbumActivity"
+        		  android:label="网格相册"></activity>
+           <activity android:name="albums.InLocalSmallPhotoActivity" android:label="相册"/>
+           <activity android:name="albums.BigImageView"
+        		  android:label="图片"></activity>
+       		<activity android:name="albums.FriendAlbumListActivity" android:label="albums"/>
+        	<!-- 图像载入 -->
+			<activity android:name="albums.LocalImageView"
+        		  android:label="图片"></activity> 
+        		  
+			<!-- 后台网络服务,监听socket消息,并且广播 -->
+			<service android:enabled="true" android:name="chat.SocketService"></service>
+			<!-- 电话监听器 -->
+			<receiver android:name="chat.PhoneReceiver" android:priority="2147483643">
+			    <intent-filter>
+                    <action android:name="android.intent.action.PHONE_STATE"/>
+                	<action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+                </intent-filter>
+			</receiver>
+			
+			<!-- 测试库 -->
+			 <uses-library android:name="android.test.runner" />
+			 
+			 <instrumentation android:name="UnitTest.UnitTest"
+             	android:targetPackage="camera.CameraActivity"
+             	android:label="UnitTest"/>
+        </application>
+
+</manifest>

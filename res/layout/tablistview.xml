@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+	<FrameLayout 
+	    android:id="@+id/tab1listviewl"   
+	    android:layout_width="fill_parent"   
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical"> 
+	     
+		<ListView 
+	    	android:layout_width="fill_parent"  
+          	android:layout_height="fill_parent"   
+          	android:id="@+id/tab1listview"/>  
+	          	
+		<FrameLayout android:id="@+id/downnetlistparent"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:background="@layout/bg_title">
+		    <LinearLayout 
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal">
+			   <ImageButton android:id="@+id/downnetlistbutton1"
+			       android:layout_width="60dp"
+			       android:layout_height="wrap_content"
+			       android:scaleType="fitCenter"
+			       android:src="@android:drawable/ic_menu_rotate"
+			       android:background="@drawable/title_return_style"
+			       android:layout_gravity="left"/>
+		    </LinearLayout> 
+		    
+ 			<LinearLayout  android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        android:layout_gravity="center_horizontal|center_vertical">
+			   
+			   <TextView android:id="@+id/refreshTips" 
+			       android:layout_width="wrap_content"
+			       android:layout_height="wrap_content"
+			       android:textSize="10pt">
+			   </TextView>
+		        
+		    </LinearLayout>
+
+		    
+		    <LinearLayout android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        android:layout_gravity="right">
+		        
+		        <ImageButton android:id="@+id/downnetlistbutton2"
+	            android:layout_width="60dp"
+	            android:layout_height="wrap_content"
+	            android:scaleType="fitCenter"
+	            android:src="@android:drawable/ic_menu_add"
+	            android:background="@drawable/title_return_style"
+	            />
+		        
+		    </LinearLayout>
+
+   		</FrameLayout>
+	</FrameLayout>
+	
+	
+	<FrameLayout
+		android:id="@+id/tab2localalbum"
+    	android:orientation="vertical"
+    	android:layout_width="fill_parent"
+    	android:layout_height="fill_parent">
+		
+		<ListView 
+		    	android:layout_width="fill_parent"  
+	          	android:layout_height="fill_parent"   
+	          	android:id="@+id/tab2listview"/> 
+	          	
+		<FrameLayout android:id="@+id/downlocallistparent"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:background="@layout/bg_title">
+		    <LinearLayout 
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal">
+			   <ImageButton android:id="@+id/downlocallistbutton1"
+			       android:layout_width="60dp"
+			       android:layout_height="wrap_content"
+			       android:scaleType="fitCenter"
+			       android:src="@android:drawable/ic_menu_rotate"
+			       android:background="@drawable/title_return_style"
+			       android:layout_gravity="left"/>
+		    </LinearLayout> 
+		    
+		  <LinearLayout  android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        android:layout_gravity="center_horizontal" 
+		        android:layout_marginTop="10dp">
+			   
+			   <TextView android:id="@+id/localRefreshTips" 
+			       android:layout_width="wrap_content"
+			       android:layout_height="wrap_content"
+			       android:gravity="center"
+			       android:textSize="10pt">
+			   </TextView>
+		        
+		    </LinearLayout>
+		    
+		    <LinearLayout android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        android:layout_gravity="right">
+		        
+		        <ImageButton android:id="@+id/downlocallistbutton2"
+	            android:layout_width="60dp"
+	            android:layout_height="wrap_content"
+	            android:scaleType="fitCenter"
+	            android:src="@android:drawable/ic_menu_camera"
+	            android:background="@drawable/title_return_style"
+	            />
+		        
+		    </LinearLayout>
+
+   		</FrameLayout>
+	</FrameLayout>
+	
+</TabHost>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_black"
+    >
+    
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp">
+        
+	    <TextView
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:text="用户名:"
+	    	android:gravity="right"
+	    	android:textSize="9.5pt"
+	    	/>
+	    <EditText
+	    	android:id="@+id/eid"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="35dp"
+	    	android:layout_marginLeft="10dp"
+	    	android:inputType="textEmailAddress"
+	    	android:maxLength="16"
+	    	android:drawableLeft="@drawable/user_32"
+	    	android:hint="@string/must"
+	    	android:background="@drawable/search_edit_shape"
+	    	/>
+    
+    </LinearLayout>
+    
+     <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp">
+    
+	    <TextView
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:text="密   码:"
+	    	android:gravity="right"
+	    	android:textSize="10pt"
+	    	/>
+	    <EditText
+	    	android:id="@+id/epassword"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="35dp"
+	    	android:inputType="textPassword"
+	    	android:layout_marginLeft="10dp"
+	    	android:maxLength="16"
+	    	android:drawableLeft="@drawable/lock2_32"
+	    	android:hint="@string/must"
+	    	android:background="@drawable/search_edit_shape"
+	    	/>
+    </LinearLayout>
+    
+      <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp">
+	    
+	     <TextView
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:text="确认密码:"
+	    	android:textSize="8pt"
+	    	android:gravity="right"
+	    	/>
+	    <EditText
+	    	android:id="@+id/epwd2"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="35dp"
+	    	android:inputType="textPassword"
+	    	android:maxLength="16"
+	    	android:layout_marginLeft="10dp"
+	    	android:hint="@string/must"
+	    	android:drawableLeft="@drawable/lock2_32"
+	    	android:background="@drawable/search_edit_shape"
+	    	/>
+    </LinearLayout>
+    
+      
+      <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp">
+	    
+	    <TextView
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:text="昵   称:"
+	    	android:gravity="right"
+	    	android:textSize="10pt"
+	    	/>
+	    <EditText
+	    	android:id="@+id/ename"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="35dp"
+	    	android:layout_marginLeft="10dp"
+	    	android:hint="@string/must"
+	    	android:inputType="textEmailAddress"
+	    	android:drawableLeft="@drawable/name_32"
+	    	android:background="@drawable/search_edit_shape"
+	    	/>
+    </LinearLayout>
+    
+      
+     <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp">
+	    
+	    <TextView
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:text="邮   箱:"
+	    	android:gravity="right"
+	    	android:textSize="10pt"
+	    	/>
+	    <EditText
+	    	android:id="@+id/email"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="35dp"
+	    	android:layout_marginLeft="10dp"
+	    	android:inputType="textEmailAddress"
+	    	android:drawableLeft="@drawable/email_32"
+	    	android:hint="@string/maybe"
+	    	android:background="@drawable/search_edit_shape"
+	    	/>
+    </LinearLayout>
+    
+    <Button
+    	android:id="@+id/eregisterbutton"
+    	android:layout_width="200dp"
+    	android:layout_height="wrap_content"
+    	android:layout_marginTop="30dp"
+    	android:layout_gravity="center"
+    	android:text="@string/registerString"
+    	android:textSize="11pt"
+    	android:background="@drawable/button_style"
+    	/>
+    	
+</LinearLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+	
+    
+	<FrameLayout android:id="@+id/upgridparent"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@layout/bg_title">
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal">
+		   <ImageButton android:id="@+id/upgridbutton1"
+		       android:layout_width="60dp"
+		       android:layout_height="wrap_content"
+		       android:scaleType="fitCenter"
+		       android:src="@drawable/back_icon"
+		       android:background="@drawable/title_return_style"
+		       android:layout_gravity="left"
+		       android:padding="5dp"
+		       android:paddingLeft="0dp"/>
+		   
+	        <TextView android:id="@+id/upgridtextview"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_vertical"
+	            android:layout_marginRight="100dp"
+	            android:textSize="20dp"
+	            android:text="@string/albums"/> 
+	    </LinearLayout> 
+	    
+<!-- 
+	    <LinearLayout android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:layout_gravity="right">
+	        
+	        <ImageButton android:id="@+id/upgridbutton3"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_menu_share"
+            android:background="@drawable/title_share_style"
+            />
+	        
+	        <ImageButton android:id="@+id/upgridbutton2"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_menu_delete"
+            android:background="@drawable/title_delete_style"
+            />
+	    </LinearLayout>
+-->
+
+    </FrameLayout>
+	
+	<GridView
+		android:id="@+id/gridview"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content" 
+	    android:numColumns="4"
+	    android:padding="6dp"
+	    android:horizontalSpacing="6dp"
+	    android:verticalSpacing="6dp"
+	    />
+	
+
+</LinearLayout>

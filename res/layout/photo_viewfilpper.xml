@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/filpperparent">
+    
+	<ViewFlipper android:id="@+id/ViewFlipper"
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent">
+	</ViewFlipper>
+	
+	<FrameLayout android:id="@+id/upfilpperparent"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@layout/bg_title">
+	    <LinearLayout 
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal">
+		   <ImageButton android:id="@+id/upfilpperbutton1"
+		       android:layout_width="60dp"
+		       android:layout_height="wrap_content"
+		       android:scaleType="fitCenter"
+		       android:src="@drawable/back_icon"
+		       android:background="@drawable/title_return_style"
+		       android:layout_gravity="left"
+		       android:padding="5dp"
+		       android:paddingLeft="0dp"/>
+	        <TextView android:id="@+id/upfilppertextview"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_gravity="center_vertical"
+	            android:layout_marginRight="100dp"
+	            android:textSize="20dp"
+	            android:text="@string/albums"/> 
+	    </LinearLayout> 
+	    
+	    <LinearLayout android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:layout_gravity="right">
+	        
+	        <ImageButton android:id="@+id/upfilpperbutton3"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_menu_share"
+            android:background="@drawable/title_share_style"
+            />
+	        
+	        <ImageButton android:id="@+id/upfilpperbutton2"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_menu_delete"
+            android:background="@drawable/title_delete_style"
+            android:layout_marginRight="5dp"
+            />
+	        
+	    </LinearLayout>
+
+    </FrameLayout>
+	
+</RelativeLayout>
