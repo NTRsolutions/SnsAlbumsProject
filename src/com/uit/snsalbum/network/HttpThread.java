@@ -52,7 +52,7 @@ public class HttpThread {
 	private final String TAG = "HttpThread";
 	public static String serverURL = "";				// 服务器URL,在设置界面可以设定
 	
-	private String url = "http://199.36.75.40/Android/receiveMessage.php";
+	private String url = "http://snsalbums.sinaapp.com/server_code/receiveMessage.php";
 	
 
 	/**

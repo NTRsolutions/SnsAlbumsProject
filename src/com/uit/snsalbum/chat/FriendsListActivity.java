@@ -173,7 +173,7 @@ public class FriendsListActivity extends ListActivity implements OnTouchListener
         // 设置背景色
         listView.setCacheColorHint(Color.TRANSPARENT);
         // 设置列表的背景,要设置图像背景则要把CacheColorHint设置为透明
-        listView.setBackgroundResource(R.drawable.frilist);
+        listView.setBackgroundResource(R.drawable.bg_light_02);
         listView.setLayoutAnimation(controller);
         listView.setOnTouchListener(this);
         

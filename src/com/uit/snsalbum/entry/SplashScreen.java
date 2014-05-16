@@ -1,8 +1,11 @@
 package com.uit.snsalbum.entry;
 
+import java.lang.Thread.UncaughtExceptionHandler;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
@@ -67,10 +70,10 @@ public class SplashScreen extends Activity {
 				} catch (Exception e) {
 					e.printStackTrace();
 				} finally {
-					// Intent intent = new Intent(SplashScreen.this,
-					// LoginActivity.class);
 					Intent intent = new Intent(SplashScreen.this,
-							MainViewActivity.class);
+							LoginActivity.class);
+					// Intent intent = new Intent(SplashScreen.this,
+					// MainViewActivity.class);
 					startActivity(intent);
 					overridePendingTransition(R.anim.slide_left,
 							R.anim.slide_right);
@@ -78,6 +81,19 @@ public class SplashScreen extends Activity {
 			}
 		};
 		mythread.start();
+		/**
+		 * 设置未捕获异常的处理方法
+		 */
+		Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+
+			@Override
+			public void uncaughtException(Thread thread, Throwable ex) {
+				if (ex instanceof RuntimeException) {
+					Log.e("", ex.toString()) ;
+					MainViewActivity.killCurrentApp(getApplicationContext());
+				}
+			}
+		});
 	}
 
 }

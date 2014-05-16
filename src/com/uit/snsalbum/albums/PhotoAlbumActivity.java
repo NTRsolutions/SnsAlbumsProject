@@ -332,7 +332,7 @@ public class PhotoAlbumActivity extends TabActivity{
 		myTabhost.addTab(myTabhost.newTabSpec("tab1")			// 加载一个Tab1
                 .setIndicator("网络相册",getResources().getDrawable(R.drawable.world1))
                 .setContent(R.id.tab1listviewl));
-		tabWidget.getChildAt(0).getLayoutParams().height = 90;	// 设置Tab高度
+		tabWidget.getChildAt(0).getLayoutParams().height = 120;	// 设置Tab高度
 		TabTV1 = (TextView) tabWidget.getChildAt(0).findViewById(android.R.id.title);
         TabTV1.setTextColor(colorBlue);
         TabView1 = tabWidget.getChildAt(0);   					// 设置背景
@@ -343,7 +343,7 @@ public class PhotoAlbumActivity extends TabActivity{
 	        myTabhost.addTab(myTabhost.newTabSpec("tab2")			// 加载一个Tab2
 	                .setIndicator("本地相册",getResources().getDrawable(R.drawable.bank))
 	                .setContent(R.id.tab2localalbum));
-	        tabWidget.getChildAt(1).getLayoutParams().height = 90;	// 设置Tab高度
+	        tabWidget.getChildAt(1).getLayoutParams().height = 120;	// 设置Tab高度
 	        TabTV2 = (TextView) tabWidget.getChildAt(1).findViewById(android.R.id.title);
 	        TabTV2.setTextColor(colorGray);
 	        TabView2 = tabWidget.getChildAt(1);						// 设置背景

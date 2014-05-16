@@ -30,7 +30,7 @@
     				android:textColor="#000000"   
     				android:padding="5dip"  
     				android:gravity="right"
-    				android:textSize="10pt"
+    				android:textSize="15sp"
     			/>       			
     			<!-- "账号"输入框，文本超出TextView的宽度的情况下，出现横拉条   -->
     			<EditText 
@@ -39,7 +39,7 @@
     				android:scrollHorizontally="true"   
     				android:hint="@string/userid"  
     				android:drawableLeft="@drawable/user_32"
-    				android:textSize="12pt"
+    				android:textSize="15sp"
     				android:layout_marginRight="10dp"
     				android:background="@drawable/search_edit_shape"
     							
@@ -54,14 +54,14 @@
     				android:textColor="#000000"  
     				android:padding="5dip" 		
     				android:gravity="right"
-    				android:textSize="10pt"		
+    				android:textSize="15sp"		
     			/>
     			<!-- "密码"输入框；文本超出TextView的宽度的情况下，出现横拉条  -->
     			<EditText 
     				android:id="@+id/pwdEdit"
     				android:inputType="textPassword"
     				android:scrollHorizontally="true"  
-    				android:textSize="12pt"
+    				android:textSize="15sp"
     				android:layout_marginRight="10dp"
     				android:drawableLeft="@drawable/lock2_32"
     				android:hint="@string/pwd"
@@ -107,7 +107,7 @@
     	android:layout_width="wrap_content"    
     	android:layout_height="wrap_content"    	
     	android:layout_gravity="center_horizontal" 
-    	android:textSize="11pt"
+    	android:textSize="15sp"
     	android:background="@drawable/button_style"
     	/>   	
      
@@ -116,7 +116,9 @@
 	       android:layout_width="fill_parent"
 	       android:layout_height="wrap_content"
 	       android:orientation="horizontal"
-	       android:layout_marginTop="40dp"
+	       android:layout_gravity="center_horizontal"
+	       android:gravity="center"
+	       android:layout_marginTop="20dp"
 	       >
 	    			
 		   <TextView
@@ -125,7 +127,7 @@
 		       android:text="@string/registerText"
 		       android:textColor="@android:color/background_dark"
 		       android:paddingLeft="50dp"
-		       android:textSize="10pt"
+		       android:textSize="13sp"
 		       />
 		   
 		   <TextView 
@@ -133,7 +135,7 @@
 		       android:layout_width="wrap_content"
 		       android:layout_height="wrap_content"
 		       android:text="@string/registerString"
-		       android:textSize="13pt"
+		       android:textSize="15sp"
 		       android:autoLink="all"
 		       android:textColor="@android:color/background_light"
 		       android:layout_marginLeft="8dp"
