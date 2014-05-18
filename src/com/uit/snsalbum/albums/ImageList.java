@@ -14,7 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.uit.snsalbum.entry.R;
+import com.uit.snsalbum.R;
 
 
 /**

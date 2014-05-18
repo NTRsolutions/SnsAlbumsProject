@@ -22,7 +22,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.uit.snsalbum.entry.R;
+import com.uit.snsalbum.R;
 
 
 /**

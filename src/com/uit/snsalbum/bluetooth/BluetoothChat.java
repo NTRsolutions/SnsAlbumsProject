@@ -33,11 +33,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.uit.snsalbum.R;
 import com.uit.snsalbum.camera.CameraActivity;
 import com.uit.snsalbum.chat.DetailAdapter;
 import com.uit.snsalbum.chat.DetailEntity;
 import com.uit.snsalbum.entry.MainViewActivity;
-import com.uit.snsalbum.entry.R;
 import com.uit.snsalbum.imageedit.PictureEditActivity;
 import com.uit.snsalbum.utils.HelpDialog;
 

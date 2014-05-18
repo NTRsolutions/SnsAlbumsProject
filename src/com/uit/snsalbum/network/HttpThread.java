@@ -20,105 +20,99 @@ import android.util.Log;
 
 /**
  * Http协议：发送post请求，并接收返回值
- * @author xxjgood
- * @param  ArrayList<NameValuePair>
- * @return String or Bitmap 服务器返回的字符串或图片
- * @date   2012.4.20
  * 
- * 备注：
- * deal = 1  	 注册   			返回成功或失败
- * deal = 2  	 登录   			返回失败或相册名
- * deal = 3  	 进入某相册			返回图片名
- * deal = 100	 请求小图			返回小图
- * deal = 101	 请求大图			返回大图
- * deal = 6		 上传图片			返回成功失败
- * deal = 7		 获取好友列表		返回所有好友IP
- * deal = 8		 请求好友坐标		返回好友坐标
- * deal = 10	 退出				返回成功失败   
- * deal = 11	 进入相册 			返回相册列表
- * deal = 12	 新建相册			返回成功或失败
- * deal = 13	 删除相册			返回成功或失败
- * deal = 14	 修改相册			返回成功或失败
- * deal = 15	 删除图片			返回成功或失败
+ * @author xxjgood
+ * @param ArrayList
+ *            <NameValuePair>
+ * @return String or Bitmap 服务器返回的字符串或图片
+ * @date 2012.4.20
+ * 
+ *       备注： deal = 1 注册 返回成功或失败 deal = 2 登录 返回失败或相册名 deal = 3 进入某相册 返回图片名 deal
+ *       = 100 请求小图 返回小图 deal = 101 请求大图 返回大图 deal = 6 上传图片 返回成功失败 deal = 7
+ *       获取好友列表 返回所有好友IP deal = 8 请求好友坐标 返回好友坐标 deal = 10 退出 返回成功失败 deal = 11
+ *       进入相册 返回相册列表 deal = 12 新建相册 返回成功或失败 deal = 13 删除相册 返回成功或失败 deal = 14
+ *       修改相册 返回成功或失败 deal = 15 删除图片 返回成功或失败
  */
 
-public class HttpThread { 
-	
-	private int deal = 0;						// 协议
-	private String the_string_response = null;	// 存放返回的String
-	private Bitmap bitmap = null;				// 存放返回图片的bitmap
-	//private String url = "http://ass001.gotoip55.com/Android/receiveMessage.php";			// 要连接的url	
-	private ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();	// 发送的ArrayList
+public class HttpThread {
+
+	private int deal = 0; // 协议
+	private String the_string_response = null; // 存放返回的String
+	private Bitmap bitmap = null; // 存放返回图片的bitmap
+	// private String url =
+	// "http://ass001.gotoip55.com/Android/receiveMessage.php"; // 要连接的url
+	private ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(); // 发送的ArrayList
 	private final String TAG = "HttpThread";
-	public static String serverURL = "";				// 服务器URL,在设置界面可以设定
-	
-	private String url = "http://snsalbums.sinaapp.com/server_code/receiveMessage.php";
-	
+	public static String serverURL = ""; // 服务器URL,在设置界面可以设定
+
+	private String url = "http://192.168.1.103/snsalbums/receiveMessage.php";
 
 	/**
 	 * 
-	 * @Constructor: 
+	 * @Constructor:
 	 * @@param namevaluepairs
 	 * @@param Deal
 	 * @Description: 构造函数,初始化协议和要传送的内容
 	 * @param namevaluepairs
 	 * @param Deal
 	 */
-	public HttpThread(ArrayList<NameValuePair> namevaluepairs,int Deal) {	
-		
-		nameValuePairs = namevaluepairs;										
+	public HttpThread(ArrayList<NameValuePair> namevaluepairs, int Deal) {
+
+		nameValuePairs = namevaluepairs;
 		deal = Deal;
-		
+
 		// 通过设置界面设置服务器IP
-		if (!serverURL.equals(""))
-		{
+		if (!serverURL.equals("")) {
 			url = serverURL;
-			Log.d(TAG, "我的服务器IP"+url);
+			Log.d(TAG, "我的服务器IP" + url);
 		}
 	}
-	
-	
+
 	/**
 	 * @Method: sendInfo
 	 * @Description: HTTP POST请求
 	 * @return
 	 */
-	public Object sendInfo() {														
-		try{ 						
+	public Object executeRequest() {
+		try {
+			Log.d(TAG, "### sendInfo 1");
 			// httpClient协议
-			HttpClient httpclient = new DefaultHttpClient(); 				
+			HttpClient httpclient = new DefaultHttpClient();
 			// 设置超时参数
 			HttpParams params = httpclient.getParams();
 			HttpConnectionParams.setConnectionTimeout(params, 8000);
-			HttpConnectionParams.setSoTimeout(params, 8000);
-			
-			HttpPost httppost = new	HttpPost(url); 							// HttpPost
-			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,HTTP.UTF_8));	// 把数据放入entity
-			HttpResponse response = httpclient.execute(httppost);			// 发送数据
-			
+			HttpConnectionParams.setSoTimeout(params, 30000);
+
+			HttpPost httppost = new HttpPost(url); // HttpPost
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs,
+					HTTP.UTF_8)); // 把数据放入entity
+			HttpResponse response = httpclient.execute(httppost); // 发送数据
+
 			// 根据协议判断接收String or Bitmap
-			if(deal < 100){			
-				the_string_response = convertResponseToString(response); 	// 接收返回值
+			if (deal < 100) {
+				the_string_response = convertResponseToString(response); // 接收返回值
 				return the_string_response;
-			}
-			else if(deal == 100 || deal == 101){
+			} else if (deal == 100 || deal == 101) {
 				bitmap = convertResponseToBitmap(response);
+				if (bitmap == null) {
+					Log.d(TAG, "### 服务器返回的图片数据为空.");
+				}
 				return bitmap;
-			}
-			else{
+			} else {
 				return 0;
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
+			e.printStackTrace();
 			Log.d("1", "Error in http connection " + e.toString());
 			return "error";
 		}
 	}
-	
-	
+
 	/**
 	 * @Method: convertResponseToString
-	 * @Description:   接收 http post 返回的String
-	 * @param response 服务器返回的字符串（成功、失败、数据）
+	 * @Description: 接收 http post 返回的String
+	 * @param response
+	 *            服务器返回的字符串（成功、失败、数据）
 	 * @return
 	 * @throws IllegalStateException
 	 * @throws IOException
@@ -165,27 +159,25 @@ public class HttpThread {
 		return res;
 	}
 
-	
 	/**
 	 * @Method: convertResponseToBitmap
-	 * @Description:   接收 http post 返回的图片
+	 * @Description: 接收 http post 返回的图片
 	 * @param response
 	 * @return
 	 * @throws IllegalStateException
 	 * @throws IOException
 	 */
-	public Bitmap convertResponseToBitmap(HttpResponse response) throws IllegalStateException, IOException{
-		InputStream inputStream = response.getEntity().getContent();	// 获取流
-		Bitmap bitmap = BitmapFactory.decodeStream(inputStream);		// 解码图片
-		
+	public Bitmap convertResponseToBitmap(HttpResponse response)
+			throws IllegalStateException, IOException {
+		InputStream inputStream = response.getEntity().getContent(); // 获取流
+		Bitmap bitmap = BitmapFactory.decodeStream(inputStream); // 解码图片
+
 		try {
-			inputStream.close(); 										// closing the stream….. 
+			inputStream.close(); // closing the stream…..
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		catch (IOException e) {
-			e.printStackTrace(); 
-		}
-		
+
 		return bitmap;
 	}
 }
-

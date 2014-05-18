@@ -3,6 +3,8 @@ package com.uit.snsalbum.entry;
 import android.app.ProgressDialog;
 import android.content.Context;
 
+import com.uit.snsalbum.R;
+
 /**
  * 
  * @ClassName: MyProgressDialog 

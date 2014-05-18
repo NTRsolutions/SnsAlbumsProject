@@ -44,11 +44,11 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.uit.snsalbum.R;
 import com.uit.snsalbum.albums.FriendAlbumListActivity;
 import com.uit.snsalbum.entry.LoginActivity;
 import com.uit.snsalbum.entry.MainViewActivity;
 import com.uit.snsalbum.entry.MyProgressDialog;
-import com.uit.snsalbum.entry.R;
 import com.uit.snsalbum.map.BaiduMapActivity;
 import com.uit.snsalbum.network.HttpThread;
 import com.uit.snsalbum.network.NetInfomation;
@@ -289,7 +289,7 @@ public class FriendsListActivity extends ListActivity implements OnTouchListener
 				ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 				nameValuePairs.add(new BasicNameValuePair("protocol","getIP"));// 封装键值对
 				HttpThread h = new HttpThread(nameValuePairs,7);				// 获取7 好友列表
-				String msg = (String)h.sendInfo(); 								// 接收服务器的返回值
+				String msg = (String)h.executeRequest(); 								// 接收服务器的返回值
 				
 				Looper mainLooper = Looper.getMainLooper ();					// 得到主线程loop
 	            mHandler = new MyHandler(mainLooper);							// 创建主线程的handler

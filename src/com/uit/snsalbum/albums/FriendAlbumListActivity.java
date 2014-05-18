@@ -28,8 +28,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.uit.snsalbum.R;
 import com.uit.snsalbum.entry.MyProgressDialog;
-import com.uit.snsalbum.entry.R;
 import com.uit.snsalbum.network.HttpThread;
 
 /**
@@ -95,7 +95,7 @@ public class FriendAlbumListActivity extends Activity{
             nameValuePairs.add(new BasicNameValuePair("protocol","getShareAlbum"));
             nameValuePairs.add(new BasicNameValuePair("id", userID));
 			HttpThread h = new HttpThread(nameValuePairs,11);	// 11--请求相册列表
-			msg = h.sendInfo().toString(); 						// 接收服务器的返回值
+			msg = h.executeRequest().toString(); 						// 接收服务器的返回值
 			Log.d("请求网络相册列表", msg);
 			sendMessage();
 		}

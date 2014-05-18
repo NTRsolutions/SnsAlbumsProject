@@ -58,6 +58,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.uit.snsalbum.R;
 import com.uit.snsalbum.albums.PhotoAlbumActivity;
 import com.uit.snsalbum.bluetooth.BluetoothChat;
 import com.uit.snsalbum.camera.CameraActivity;
@@ -73,11 +74,11 @@ import com.uit.snsalbum.utils.HelpDialog;
 
 /**
  * 
- * @ClassName: MainViewActivity 
- * @Description:  程序主界面,各功能模块的入口
+ * @ClassName: MainViewActivity
+ * @Description: 程序主界面,各功能模块的入口
  * @Author: Mr.Simple (何红辉)
- * @E-mail: bboyfeiyu@gmail.com 
- * @Date 2012-11-17 下午5:15:12 
+ * @E-mail: bboyfeiyu@gmail.com
+ * @Date 2012-11-17 下午5:15:12
  *
  */
 public class MainViewActivity extends Activity implements OnClickListener,
@@ -86,35 +87,35 @@ public class MainViewActivity extends Activity implements OnClickListener,
 	// 使用HashSet来存储用户的Activity,Set不允许含有重复元素
 	public static Set<Activity> gAtcSet = new HashSet<Activity>();
 
-	private ImageButton cameraBtn = null; 			// 进入拍照模块按钮
-	private ImageButton ablumsBtn = null; 			// 进入相册模块按钮
-	private ImageButton chatBtn = null; 			// 进入聊天模块按钮
-	private ImageButton mapBtn = null; 				// 进入地图模块按钮
-	private ImageButton psBtn = null; 				// 进入编辑模块按钮
-	private ImageButton blueToothBtn = null; 		// 进入蓝牙模块按钮
+	private ImageButton cameraBtn = null; // 进入拍照模块按钮
+	private ImageButton ablumsBtn = null; // 进入相册模块按钮
+	private ImageButton chatBtn = null; // 进入聊天模块按钮
+	private ImageButton mapBtn = null; // 进入地图模块按钮
+	private ImageButton psBtn = null; // 进入编辑模块按钮
+	private ImageButton blueToothBtn = null; // 进入蓝牙模块按钮
 	private GestureDetector mGestureDetector = null;// 手势触摸探测器
 
-	private PopupWindow popupWindow; 		// 主菜单窗口
-	private GridView menuGrid;				// 布局菜单的网格视图
-	public static int mThemeMode = 0; 		// 主题模式
+	private PopupWindow popupWindow; // 主菜单窗口
+	private GridView menuGrid; // 布局菜单的网格视图
+	public static int mThemeMode = 0; // 主题模式
 	private final String SETTING = "usr_info"; // 保存信息到本地的share
 	private final String TAG = "MAINACTIVITY";
 
 	private final String CHAT_ACTION = "chat.SocketService.chatMessage";// 接收消息广播器的action
-	private final String ONLINE_ACTION = "chat.SocketService.onlie"; 	// 接收消息广播器的action
-	public static SocketService mSocketService = null; 					// socket服务
-	private static MyBroadcastReciver mDataReceiver = null; 			// 广播接收器
+	private final String ONLINE_ACTION = "chat.SocketService.onlie"; // 接收消息广播器的action
+	public static SocketService mSocketService = null; // socket服务
+	private static MyBroadcastReciver mDataReceiver = null; // 广播接收器
 
-	private static Intent sIntent = null; 		// 启动服务的intent
-	private MediaPlayer mMediaPlayer = null; 	// 多媒体对象
-	private static int notifyTag = 0; 			// 推送标识
-	private Vibrator mVibrator; 				// 震动
-	private String fName = ""; 					// 好友的名字
-	public static boolean isNotify = true; 		// 是否推送消息的标识
-	private MyHandlerAlbum mHandlerAlb = null; 	// 向网络请求网络相册列表
+	private static Intent sIntent = null; // 启动服务的intent
+	private MediaPlayer mMediaPlayer = null; // 多媒体对象
+	private static int notifyTag = 0; // 推送标识
+	private Vibrator mVibrator; // 震动
+	private String fName = ""; // 好友的名字
+	public static boolean isNotify = true; // 是否推送消息的标识
+	private MyHandlerAlbum mHandlerAlb = null; // 向网络请求网络相册列表
 
-	public static List<String> sFriendList = new ArrayList<String>();	// 好友列表
-	public static List<String> sAlbumList = new ArrayList<String>();	// 相册列表
+	public static List<String> sFriendList = new ArrayList<String>(); // 好友列表
+	public static List<String> sAlbumList = new ArrayList<String>(); // 相册列表
 
 	// 菜单数组
 	private String[] menu_name_array = { "设置", "注销", "换肤", "帮助", "退出" };
@@ -123,21 +124,21 @@ public class MainViewActivity extends Activity implements OnClickListener,
 			android.R.drawable.ic_menu_agenda, android.R.drawable.ic_menu_help,
 			android.R.drawable.ic_menu_info_details,
 			android.R.drawable.ic_lock_power_off };
-	
 
 	/**
-	 * (非 Javadoc,覆写的方法) 
+	 * (非 Javadoc,覆写的方法)
+	 * 
 	 * @Title: onCreate
-	 * @Description:  页面创建
-	 * @param savedInstanceState 
+	 * @Description: 页面创建
+	 * @param savedInstanceState
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		//设置无标题  
-        requestWindowFeature(Window.FEATURE_NO_TITLE);  
+		// 设置无标题
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mainviewactivity);
 
 		// 初始化按钮等组件
@@ -154,25 +155,25 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		// 根据时间主动切换主题
 		autoChangeSkin();
 
-		try{
+		try {
 
 			// 广播接收器,接收好友发来的消息(通过service的广播来传递的)
 			mDataReceiver = new MyBroadcastReciver();
 			IntentFilter intentFilter = new IntentFilter(CHAT_ACTION);
-			Log.d(TAG, "注册结果 ： " + registerReceiver(mDataReceiver, intentFilter));
-			
+			Log.d(TAG, "注册结果 ： "
+					+ registerReceiver(mDataReceiver, intentFilter));
+
 			// 启动socket监听服务
 			sIntent = new Intent(this, SocketService.class);
 			sIntent.putExtra("key", "Service Start");
 			startService(sIntent);
-		}catch(Exception e){
-			e.printStackTrace() ;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		// 向服务器发送一个socket消息,使得服务器含有客户端的路由信息
-		sendRouteMsg() ;
+		sendRouteMsg();
 	}
-
 
 	/**
 	 * @Method: initComponents 函数
@@ -205,7 +206,6 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		mainLayout.setLongClickable(true); // 设置可长按
 
 	}
-
 
 	/**
 	 * @Method: autoChangeSkin 函数
@@ -242,12 +242,12 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		saveSkinModeToLocal();
 	}
 
-	
 	/**
-	 * (非 Javadoc,覆写的方法) 
+	 * (非 Javadoc,覆写的方法)
+	 * 
 	 * @Title: onClick
-	 * @Description:  点击事件,各个功能模块的按钮 
-	 * @param v 
+	 * @Description: 点击事件,各个功能模块的按钮
+	 * @param v
 	 * @see android.view.View.OnClickListener#onClick(android.view.View)
 	 */
 	@Override
@@ -270,8 +270,9 @@ public class MainViewActivity extends Activity implements OnClickListener,
 			// 跳转页面
 			startActivityForResult(intent, code);
 			// 页面切换的动画效果
-			overridePendingTransition(android.R.anim.fade_out, android.R.anim.fade_in);
-			return ;
+			overridePendingTransition(android.R.anim.fade_out,
+					android.R.anim.fade_in);
+			return;
 		}
 
 		if (v == ablumsBtn) { // 前往相册页面
@@ -322,7 +323,7 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		overridePendingTransition(R.anim.slide_left, R.anim.slide_right);
 
 	}
-	
+
 	/**
 	 * 
 	 * @Method: sendMsgUDP
@@ -336,7 +337,7 @@ public class MainViewActivity extends Activity implements OnClickListener,
 			public void run() {
 				Looper.prepare();
 				try {
-					String serverUrl = "199.36.75.40";
+					String serverUrl = "192.168.1.103";
 					InetAddress iaddr = InetAddress.getByName(serverUrl);
 					// 封装消息pakcet,将我的IP地址发给服务器存储
 					String mMsg = "$" + NetInfomation.getLocalIpAddress() + "$";
@@ -344,10 +345,10 @@ public class MainViewActivity extends Activity implements OnClickListener,
 					// 创建一个DatagramPacket对象，并指定要讲这个数据包发送到网络当中的哪个地址，以及端口号
 					DatagramPacket packet = new DatagramPacket(data,
 							data.length, iaddr, 9876);
-
-					SocketService.mUdpRevSocket.send(packet);
-					Log.d("UDP", " Packet已经发送 ： " + mMsg);
-
+					if (SocketService.mUdpRevSocket != null) {
+						SocketService.mUdpRevSocket.send(packet);
+						Log.d("UDP", " Packet已经发送 ： " + mMsg);
+					}
 				} catch (Exception e) {
 					Toast.makeText(MainViewActivity.this, "发送超时,请检查网络...", 0)
 							.show();
@@ -359,7 +360,6 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		}.start();
 
 	}
-		
 
 	/**
 	 * @Method: getAllUsersInfo 函数
@@ -374,31 +374,28 @@ public class MainViewActivity extends Activity implements OnClickListener,
 				ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 				nameValuePairs.add(new BasicNameValuePair("protocol", "getIP"));// 封装键值对
 				HttpThread h = new HttpThread(nameValuePairs, 7); // 获取7 好友列表
-				String msg = (String) h.sendInfo(); // 接收服务器的返回值
+				String msg = (String) h.executeRequest(); // 接收服务器的返回值
 
-				Looper mainLooper = Looper.getMainLooper(); // 得到主线程loop
-				mFHandler = new MyHandler(mainLooper); // 创建主线程的handler
-				mFHandler.removeMessages(0); // 移除所有队列中的消息
-				Message m = mFHandler.obtainMessage(1, 1, 1, msg); // 把消息放入message
-				mFHandler.sendMessage(m);
+				mUIHandler.removeMessages(0); // 移除所有队列中的消息
+				Message m = mUIHandler.obtainMessage(1, 1, 1, msg); // 把消息放入message
+				mUIHandler.sendMessage(m);
 				Log.d("Main", "Main中请求好友列表");
 			}
 		}).start();
 	}
 
-
 	/**
-	 *  接收服务器返回的在线好友数据,使用mFHandler发送消息给UI线程
+	 * 接收服务器返回的在线好友数据,使用mFHandler发送消息给UI线程
 	 */
-	private Handler mFHandler = new Handler();
+	private Handler mUIHandler = new MyHandler(Looper.getMainLooper());
 
 	/**
 	 * 
-	 * @ClassName: MyHandler 
+	 * @ClassName: MyHandler
 	 * @Description: 处理服务器返回来的好友列表数据,将数据添加到好友列表中
 	 * @Author: Mr.Simple (何红辉)
-	 * @E-mail: bboyfeiyu@gmail.com 
-	 * @Date 2012-11-17 下午5:19:06 
+	 * @E-mail: bboyfeiyu@gmail.com
+	 * @Date 2012-11-17 下午5:19:06
 	 *
 	 */
 	private class MyHandler extends Handler {
@@ -413,10 +410,10 @@ public class MainViewActivity extends Activity implements OnClickListener,
 			sFriendList.clear();
 			String fList = msg.obj.toString().trim(); // 接收到子线程的字符串
 			if (fList.contains("error")) {
-//				Toast.makeText(MainViewActivity.this, "好友列表加载失败,请查看网络...", 0)
-//						.show();
+				// Toast.makeText(MainViewActivity.this, "好友列表加载失败,请查看网络...", 0)
+				// .show();
 				// 获取在线好友列表失败,则继续提交请求
-				getAllUsersInfo() ;
+				getAllUsersInfo();
 				return;
 			}
 			// 设置缓存数组
@@ -427,26 +424,25 @@ public class MainViewActivity extends Activity implements OnClickListener,
 				for (String item : arr) {
 					// 将数据导入到List中
 					sFriendList.add(item);
-					Log.d("获取好友列表数据 : ", item);
+					Log.d("获取好友列表数据 : ", "### 好友信息 : " + item);
 				}
 
 			} catch (Exception e) {
-				Toast.makeText(MainViewActivity.this, "抱歉,好友列表获取失败~~~", 0).show();
+				Toast.makeText(MainViewActivity.this, "抱歉,好友列表获取失败~~~", 0)
+						.show();
 			}
 
 		}
 	}
 
-
 	/**
 	 * @Method: getNetAlbumsList 函数
-	 * @Description:  向服务器请求网络相册列表
+	 * @Description: 向服务器请求网络相册列表
 	 */
 	private void getNetAlbumsList() {
-		Thread albThread = new Thread( rNetAlbum );
+		Thread albThread = new Thread(rNetAlbum);
 		albThread.start();
 	}
-
 
 	/**
 	 * 请求网络相册列表的runnable
@@ -461,7 +457,7 @@ public class MainViewActivity extends Activity implements OnClickListener,
 			nameValuePairs.add(new BasicNameValuePair("id",
 					LoginActivity.mineID));
 			HttpThread h = new HttpThread(nameValuePairs, 11); // 11--请求相册列表
-			msg = h.sendInfo().toString(); // 接收服务器的返回值
+			msg = h.executeRequest().toString(); // 接收服务器的返回值
 			Log.d("请求网络相册列表", msg);
 			sendMessage();
 		}
@@ -497,15 +493,15 @@ public class MainViewActivity extends Activity implements OnClickListener,
 			try {
 				buf = AlbumList.split(";;");
 				// 第一个为请求返回的成功或者失败的标志
-				if ( buf[0].equals("error") ){
+				if (buf[0].equals("error")) {
 					Log.d("网络相册列表请求出错", "返回ERROR");
 					// 重新请求
-					getNetAlbumsList() ; 
+					getNetAlbumsList();
 				}
-				
+
 				// 将网络相册列表加入到静态变量sAlbumList中
 				for (String item : buf) {
-					if ( !item.equals("error") || !item.equals("fail")){
+					if (!item.equals("error") || !item.equals("fail")) {
 						sAlbumList.add(item);
 					}
 					Log.d("MAIN接到相册列表-->", item);
@@ -514,74 +510,75 @@ public class MainViewActivity extends Activity implements OnClickListener,
 			} catch (Exception e) {
 				e.printStackTrace();
 				// 再次请求网络相册列表
-				getNetAlbumsList() ; 
+				getNetAlbumsList();
 			}
 
 		}
 	}
 
-	
 	long exitTime = 0;
+
 	/**
-	 * (非 Javadoc,覆写的方法) 
+	 * (非 Javadoc,覆写的方法)
+	 * 
 	 * @Title: onKeyDown
 	 * @Description: 按键事件,在2秒内连续按返回键实现退出程序的功能
 	 * @param keyCode
 	 * @param event
-	 * @return 
+	 * @return
 	 * @see android.app.Activity#onKeyDown(int, android.view.KeyEvent)
 	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
-			case KeyEvent.KEYCODE_MENU: 	// 菜单键按下的操作,弹出菜单窗口
-				openPopupwin();
-				break;
-	
-			case KeyEvent.KEYCODE_BACK: {	// 退出
-				if ((System.currentTimeMillis() - exitTime) > 2000
-						&& event.getAction() == KeyEvent.ACTION_DOWN) {
-	
-		            Toast.makeText(getApplicationContext(), "再按一次就退出程序咯...", 
-							Toast.LENGTH_SHORT).show();  
-					exitTime = System.currentTimeMillis();
-	
-				} else {
-					// 退出程序
-					killCurrentApp(this);
-				}
-				// 这句很重要啊!不然会进行默认的回退到上一界面
-				return true;
+		case KeyEvent.KEYCODE_MENU: // 菜单键按下的操作,弹出菜单窗口
+			openPopupwin();
+			break;
+
+		case KeyEvent.KEYCODE_BACK: { // 退出
+			if ((System.currentTimeMillis() - exitTime) > 2000
+					&& event.getAction() == KeyEvent.ACTION_DOWN) {
+
+				Toast.makeText(getApplicationContext(), "再按一次就退出程序咯...",
+						Toast.LENGTH_SHORT).show();
+				exitTime = System.currentTimeMillis();
+
+			} else {
+				// 退出程序
+				killCurrentApp(this);
 			}
-			default:
-				break;
+			// 这句很重要啊!不然会进行默认的回退到上一界面
+			return true;
+		}
+		default:
+			break;
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-	
 
 	/**
-	 * (非 Javadoc,覆写的方法) 
+	 * (非 Javadoc,覆写的方法)
+	 * 
 	 * @Title: onResume
-	 * @Description:  
+	 * @Description:
 	 * @see android.app.Activity#onResume()
 	 */
 	@Override
 	protected void onResume() {
-		
+
 		super.onResume();
 	}
 
-
 	/**
-	 * (非 Javadoc,覆写的方法) 
+	 * (非 Javadoc,覆写的方法)
+	 * 
 	 * @Title: onRestart
-	 * @Description:  页面重新获取焦点   
+	 * @Description: 页面重新获取焦点
 	 * @see android.app.Activity#onRestart()
 	 */
 	@Override
 	protected void onRestart() {
-		
+
 		// 如果上一次没有获取好友列表和相册列表,则重新启动时要获取列表
 		if (sFriendList.size() == 0) {
 			Log.d("好友列表", "重新获取");
@@ -594,25 +591,25 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		super.onRestart();
 	}
 
-	
 	/**
-	 * (非 Javadoc,覆写的方法) 
+	 * (非 Javadoc,覆写的方法)
+	 * 
 	 * @Title: onStop
-	 * @Description:  
+	 * @Description:
 	 * @see android.app.Activity#onStop()
 	 */
 	@Override
 	protected void onStop() {
-		
+
 		mHandler.removeCallbacks(vibRunnable); // 将runnable移除
-		if ( mFHandler != null ){
-			mFHandler = null;
-		} 
-		
-		try{
+		if (mUIHandler != null) {
+			mUIHandler = null;
+		}
+
+		try {
 			bindService(sIntent, mConnection, Context.BIND_AUTO_CREATE); // 绑定服务,使服务随activity消亡
-		}catch(Exception e){
-			e.printStackTrace() ;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		super.onStop();
 	}
@@ -623,25 +620,25 @@ public class MainViewActivity extends Activity implements OnClickListener,
 	 * @see android.app.Activity#onRestart()
 	 ******************************************************************************************/
 	/**
-	 * (非 Javadoc,覆写的方法) 
+	 * (非 Javadoc,覆写的方法)
+	 * 
 	 * @Title: onDestroy
-	 * @Description:  销毁页面,停止服务 
+	 * @Description: 销毁页面,停止服务
 	 * @see android.app.Activity#onDestroy()
 	 */
 	@Override
 	protected void onDestroy() {
 
 		Log.d("", "OnDestory中销毁");
-		stopService( sIntent ); // 停止服务
+		stopService(sIntent); // 停止服务
 		
-		unregisterReceiver( mDataReceiver );
+		unregisterReceiver(mDataReceiver);
 		super.onDestroy();
 	}
 
-
 	/**
 	 * @Method: getMenuAdapter 函数
-	 * @Description:  popupwindow's adapter.菜单窗口的适配器
+	 * @Description: popupwindow's adapter.菜单窗口的适配器
 	 * @param menuNameArray
 	 * @param menuImageArray
 	 * @return
@@ -667,7 +664,6 @@ public class MainViewActivity extends Activity implements OnClickListener,
 
 	}
 
-	
 	/**
 	 * @Method: openPopupwin 函数
 	 * @Description: 菜单窗口---popupwindow
@@ -749,10 +745,9 @@ public class MainViewActivity extends Activity implements OnClickListener,
 
 	}
 
-	
 	/**
 	 * @Method: openSkinDialog 函数
-	 * @Description:  给界面换皮肤
+	 * @Description: 给界面换皮肤
 	 */
 	private void openSkinDialog() {
 
@@ -816,11 +811,11 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		frameDialog.show();
 	}
 
-
 	/**
 	 * @Method: changeTextColor 函数
 	 * @Description: 改变主界面的文本控件字体颜色
-	 * @param mode   日间或者夜间模式
+	 * @param mode
+	 *            日间或者夜间模式
 	 */
 	private void changeTextColor(int mode) {
 		// 颜色
@@ -850,9 +845,8 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		bluetoothTv.setTextColor(color);
 	}
 
-
 	/**
-	 * @Method: saveSkinModeToLocal 
+	 * @Method: saveSkinModeToLocal
 	 * @Description: 将用户的皮肤号到本地
 	 */
 	private void saveSkinModeToLocal() {
@@ -862,7 +856,6 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		Log.d("", "保存皮肤模式： " + mThemeMode);
 
 	}
-
 
 	/**
 	 * @Method: readSkinModeFromLocal
@@ -878,14 +871,13 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		checkSkin(layout);
 	}
 
-	
 	/**
 	 * 
-	 * @ClassName: MyBroadcastReciver 
-	 * @Description:  廣播接收器,接收好友發送來的聊天消息和上線消息
-	 * @Author: Mr.Simple 
-	 * @E-mail: bboyfeiyu@gmail.com 
-	 * @Date 2012-11-7 下午6:13:55 
+	 * @ClassName: MyBroadcastReciver
+	 * @Description: 廣播接收器,接收好友發送來的聊天消息和上線消息
+	 * @Author: Mr.Simple
+	 * @E-mail: bboyfeiyu@gmail.com
+	 * @Date 2012-11-7 下午6:13:55
 	 *
 	 */
 	private class MyBroadcastReciver extends BroadcastReceiver {
@@ -907,12 +899,12 @@ public class MainViewActivity extends Activity implements OnClickListener,
 
 	} // 用于接收socket服务消息广播的接收器
 
-	
 	/**
 	 * @Method: postMessage
 	 * @Description: 处理服务器发来的消息,从Service广播出来的消息
 	 * @param action
-	 * @param msg 参数
+	 * @param msg
+	 *            参数
 	 * @return void 返回类型
 	 * @throws
 	 */
@@ -925,14 +917,14 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		// 广播的是聊天消息类型
 		if (action.equals(CHAT_ACTION)) {
 
-			String buf[] = msg.split(";;") ;
+			String buf[] = msg.split(";;");
 			fName = buf[2];
-			if ( SocketService.mMsgMap.size() > 0 
-					&& SocketService.mMsgMap.get( fName ) == "NO"){
-				
-				Log.d("main的广播接收器", fName +"的消息不推送");
-			}else { 	// 接收到消息,则推送消息
-				showNotification( msg );
+			if (SocketService.mMsgMap.size() > 0
+					&& SocketService.mMsgMap.get(fName) == "NO") {
+
+				Log.d("main的广播接收器", fName + "的消息不推送");
+			} else { // 接收到消息,则推送消息
+				showNotification(msg);
 			}
 		} else if (action.equals(ONLINE_ACTION)) { // 上线消息,用户上线更新好友列表
 			// 好友上线的广播类型
@@ -947,12 +939,12 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		}
 	}
 
-
 	NotificationManager mNM;
+
 	/**
-	 * @Method: showNotification 
+	 * @Method: showNotification
 	 * @Description: 推送消息,好友发送来的短消息
-	 * @param msg   
+	 * @param msg
 	 * @throws
 	 */
 	private void showNotification(String msg) {
@@ -965,7 +957,7 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		 * 四个参数含义为： 100 毫秒延迟后，震动 300 毫秒，暂停 200 毫秒后，再震动 800 毫秒
 		 **************************************************************** */
 		long[] pattern = { 100, 500, 100, 200 }; // 根据指定的模式进行震动
-		mVibrator.vibrate(pattern, 2); 			// -1不重复，非-1为从pattern的指定下标开始重复
+		mVibrator.vibrate(pattern, 2); // -1不重复，非-1为从pattern的指定下标开始重复
 		mHandler.postDelayed(vibRunnable, 1500);
 
 		String friendIp = ""; // 对方的IP
@@ -974,13 +966,13 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		try {
 			if (msg.contains(";;")) {
 				// 分割数据
-				String buf[] = msg.split(";;") ;
+				String buf[] = msg.split(";;");
 				// 好友IP
-				friendIp = buf[1] ;
+				friendIp = buf[1];
 				// 好友昵称
 				friendName = buf[2];
 				// 消息内容
-				msgCont = buf[3] ;
+				msgCont = buf[3];
 				Log.d(TAG, "接到的新消息: " + msgCont);
 			}
 		} catch (Exception e) {
@@ -1006,16 +998,15 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
 				intent, 0);
 		// 设置消息内容
-		notification.setLatestEventInfo(this, "来自 " + friendName + "的新消息", msgCont,
-				contentIntent);
+		notification.setLatestEventInfo(this, "来自 " + friendName + "的新消息",
+				msgCont, contentIntent);
 
 		// 将消息推送出去
 		mNM.notify("Notify" + notifyTag, notifyTag++, notification);
 	}
 
-
 	/**
-	 *  取消消息震动.
+	 * 取消消息震动.
 	 */
 	private Handler mHandler = new Handler();
 	Runnable vibRunnable = new Runnable() {
@@ -1030,7 +1021,6 @@ public class MainViewActivity extends Activity implements OnClickListener,
 			}
 		}
 	};
-
 
 	/**
 	 * @Method: checkSkin
@@ -1053,7 +1043,6 @@ public class MainViewActivity extends Activity implements OnClickListener,
 
 	}
 
-
 	/**
 	 * @Method: userOffLine
 	 * @Description: 用户下线的消息
@@ -1068,14 +1057,13 @@ public class MainViewActivity extends Activity implements OnClickListener,
 				nameValuePairs.add(new BasicNameValuePair("id",
 						LoginActivity.mineID));
 				HttpThread h = new HttpThread(nameValuePairs, 10); // 10--退出
-				h.sendInfo();
+				h.executeRequest();
 				Log.d("1", "退出");
 			};
 			// 接收服务器的返回值
 		}.start();
 	}
 
-	
 	/**
 	 * 定义service绑定的回调，传给bindService()的
 	 */
@@ -1096,11 +1084,11 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		}
 	};
 
-
 	/**
 	 * @Method: addActivityToHashSet
 	 * @Description: 将页面添加到set中,用于完全退出程序
-	 * @param atc    被添加进来的Activity
+	 * @param atc
+	 *            被添加进来的Activity
 	 */
 	public static void addActivityToHashSet(Activity atc) {
 
@@ -1113,17 +1101,15 @@ public class MainViewActivity extends Activity implements OnClickListener,
 
 	}
 
-	
 	/**
 	 * @Method: removeFromSet
-	 * @Description:  将Activity移除
+	 * @Description: 将Activity移除
 	 * @param atc
 	 */
 	public static void removeFromSet(Activity atc) {
 		gAtcSet.remove(atc);
 		Log.d("窗口移除", "MainActivity");
 	}
-
 
 	/**
 	 * @Method: releaseService
@@ -1138,10 +1124,9 @@ public class MainViewActivity extends Activity implements OnClickListener,
 
 	}
 
-	
 	/**
 	 * @Method: killCurrentApp
-	 * @Description:  退出整个程序
+	 * @Description: 退出整个程序
 	 * @param context
 	 */
 	public static void killCurrentApp(Context context) {
@@ -1164,13 +1149,13 @@ public class MainViewActivity extends Activity implements OnClickListener,
 
 	} // end of killCurrentApp(Context);
 
-	
 	/**
-	 * (非 Javadoc,覆写的方法) 
+	 * (非 Javadoc,覆写的方法)
+	 * 
 	 * @Title: onDown
-	 * @Description:   鼠标手势,触屏切换页面
+	 * @Description: 鼠标手势,触屏切换页面
 	 * @param e
-	 * @return 
+	 * @return
 	 * @see android.view.GestureDetector.OnGestureListener#onDown(android.view.MotionEvent)
 	 */
 	@Override
@@ -1178,20 +1163,22 @@ public class MainViewActivity extends Activity implements OnClickListener,
 		return false;
 	}
 
-
 	private int verticalMinDistance = 150;
 	private int minVelocity = 0;
+
 	/**
-	 * (非 Javadoc,覆写的方法) 
+	 * (非 Javadoc,覆写的方法)
+	 * 
 	 * @Title: onFling
-	 * @Description:  手势划动,切换屏幕 描述： 鼠标手势相当于一个向量（当然有可能手势是曲线），e1为向量的起点，e2为向量的终点，
-	 * 				  velocityX为向量水平方向的速度，velocityY为向量垂直方向的速度
+	 * @Description: 手势划动,切换屏幕 描述： 鼠标手势相当于一个向量（当然有可能手势是曲线），e1为向量的起点，e2为向量的终点，
+	 *               velocityX为向量水平方向的速度，velocityY为向量垂直方向的速度
 	 * @param e1
 	 * @param e2
 	 * @param velocityX
 	 * @param velocityY
-	 * @return 
-	 * @see android.view.GestureDetector.OnGestureListener#onFling(android.view.MotionEvent, android.view.MotionEvent, float, float)
+	 * @return
+	 * @see android.view.GestureDetector.OnGestureListener#onFling(android.view.MotionEvent,
+	 *      android.view.MotionEvent, float, float)
 	 */
 	@Override
 	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
@@ -1213,7 +1200,8 @@ public class MainViewActivity extends Activity implements OnClickListener,
 			bIntent.setClass(MainViewActivity.this, CameraActivity.class);
 			bIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivityForResult(bIntent, 1);
-			overridePendingTransition(android.R.anim.fade_out, android.R.anim.fade_in);
+			overridePendingTransition(android.R.anim.fade_out,
+					android.R.anim.fade_in);
 
 		}
 

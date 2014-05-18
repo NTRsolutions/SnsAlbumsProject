@@ -48,9 +48,9 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.uit.snsalbum.R;
 import com.uit.snsalbum.entry.LoginActivity;
 import com.uit.snsalbum.entry.MyProgressDialog;
-import com.uit.snsalbum.entry.R;
 import com.uit.snsalbum.network.HttpThread;
 import com.uit.snsalbum.utils.ImageCacheToSDCard;
 
@@ -107,9 +107,6 @@ public class BigImageView extends Activity{
 		super.onCreate(savedInstanceState);
 		//设置无标题  
         requestWindowFeature(Window.FEATURE_NO_TITLE); 
-        //设置全屏  
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,   
-                WindowManager.LayoutParams.FLAG_FULLSCREEN); 
 		setContentView(R.layout.bigimage);
 
 		imageView = (ImageView)findViewById(R.id.bigimage1); 	
@@ -631,7 +628,7 @@ private void getImageFromCacheOrNet( int curIndex ){
 			Log.d("1", "new thread" + Thread.currentThread().getId());
 			packData();
 			HttpThread h = new HttpThread(nameValuePairs,101);
-			bitmap = (Bitmap)h.sendInfo();
+			bitmap = (Bitmap)h.executeRequest();
 			sendMessage();
 		}
 		public void sendMessage(){										// 线程间数据传输
@@ -748,7 +745,7 @@ private void getImageFromCacheOrNet( int curIndex ){
 			nameValuePair1.add(new BasicNameValuePair("imageName", photoArray[currentpic]));
 			
 			HttpThread h = new HttpThread(nameValuePair1, 15);
-			msg = (String)h.sendInfo();
+			msg = (String)h.executeRequest();
 			sendMessage();
 		}
 		public void sendMessage(){							// 线程间数据传输

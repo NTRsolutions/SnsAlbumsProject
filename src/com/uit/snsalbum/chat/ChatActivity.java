@@ -24,9 +24,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.uit.snsalbum.R;
 import com.uit.snsalbum.entry.LoginActivity;
 import com.uit.snsalbum.entry.MainViewActivity;
-import com.uit.snsalbum.entry.R;
 import com.uit.snsalbum.network.NetInfomation;
 
 /**

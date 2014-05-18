@@ -34,8 +34,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.uit.snsalbum.R;
 import com.uit.snsalbum.entry.MyProgressDialog;
-import com.uit.snsalbum.entry.R;
 import com.uit.snsalbum.network.HttpThread;
 import com.uit.snsalbum.utils.ImageCacheToSDCard;
 
@@ -313,7 +313,7 @@ public class InPhotoAlbumActivity extends Activity{
 				Log.d("1", "new thread" + Thread.currentThread().getId());
 				packData(0,0);													// 打包数据
 				HttpThread h = new HttpThread(nameValuePairs,3);		// 创建网络发送类的对象，传入数据
-				String s = (String)h.sendInfo();								// 向服务器发送请求，并返回数据
+				String s = (String)h.executeRequest();								// 向服务器发送请求，并返回数据
 				Log.d("1","return" + s);
 				sendMessage(s);												// 将子线程的数据发送到主线程
 				
@@ -584,7 +584,7 @@ public class InPhotoAlbumActivity extends Activity{
 
 				// 想服务器请求小图片的线程,一张一张获取
 				HttpThread h = new HttpThread(nameValuePairs, 100);
-				bmp = (Bitmap) h.sendInfo();
+				bmp = (Bitmap) h.executeRequest();
 				Log.d("ASYC", "向服务器请求小图" + imgName);
 				// 将处理结果放到map中
 				map.put(imgName, bmp);

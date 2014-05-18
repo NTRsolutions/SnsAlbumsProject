@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 
+import com.uit.snsalbum.R;
+
 /**
  * @ClassName: SplashScreen
  * @Description: 启动画面
@@ -89,7 +91,10 @@ public class SplashScreen extends Activity {
 			@Override
 			public void uncaughtException(Thread thread, Throwable ex) {
 				if (ex instanceof RuntimeException) {
-					Log.e("", ex.toString()) ;
+					Log.e("", "原因 : " + ex.getCause().getMessage() + ", " + ex.toString()) ;
+					for (StackTraceElement item : ex.getStackTrace()) {
+						Log.e("", item.toString()) ;
+					}
 					MainViewActivity.killCurrentApp(getApplicationContext());
 				}
 			}

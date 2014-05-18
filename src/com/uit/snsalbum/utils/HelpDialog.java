@@ -5,7 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import com.uit.snsalbum.entry.R;
+import com.uit.snsalbum.R;
 
 /**
  * @ClassName: HelpDialog 

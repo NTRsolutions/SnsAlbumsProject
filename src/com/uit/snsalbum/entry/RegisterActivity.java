@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.uit.snsalbum.R;
 import com.uit.snsalbum.network.HttpThread;
 
 /**
@@ -129,7 +130,7 @@ public class RegisterActivity extends Activity {
 				Looper.prepare();
 
 				HttpThread h = new HttpThread(nameValuePairs, 1); // 协议 1--注册
-				msgToSend = (String) h.sendInfo(); // 向服务器发送请求，并返回数据
+				msgToSend = (String) h.executeRequest(); // 向服务器发送请求，并返回数据
 				sendMessage(); // 将子线程的数据发送到主线程
 
 				Looper.loop();

@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.uit.snsalbum.entry.R;
+import com.uit.snsalbum.R;
 
 
 /**
